@@ -1,0 +1,49 @@
+.multiline {
+    width:49%;
+    height:250px;
+}
+
+.eval {
+    background:url('data:image/gif;base64,R0lGODlheAB4AIAAAPLy8v///yH5BAAAAAAALAAAAAB4AHgAAAL/jI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKh8Si8YhMKpfMpvMJjUpzgKr1iq0esBUuwyu5rrJk8dbaRTfAEXOqDEewIW4FeVI/iQEBvr8PKJfnMCdYuKb2loi3+DBo2KcV1mjy6EiJKLmwh7nZOWJJGGqoaYc2Sjr2KVqayZdpgHrWWrnq2vbpJhtJW7JransYm7j722GcgDqqazvcS4Kcyvrq2SobrYHt/MzLnXfd/KG9fVs+S22Osgf49/eVC9+rHO4Bd/eOKdxdjc6vaq/v0bJ8wegdAzhQXrx+0vAx9GXQX7JQFFeNu3CRXEOJwxw76onosSLCgCCzlZxYKuHIhf8eUgCjcqXLfSoyaqTpkZ9Lmy9PoqRmMZwlnoy4FX2lEtczopOMHsUJbObPh0yVSn0a1OnGcy0PZpn2NGrXduzKXiKplRTDdWTdeZVJRx9Uq1FXvrV7NutVsVNH3vUbl2WaRjJ9TjmMOLHixYwbO34MObLkyZQrW76MObPmzZw7e/4MOrTo0aRLmz6NOrXq1axbu34NO7bs2bRr276NO7fu3bx7+/4NPLjw4cSLG79cAAA7');
+}
+
+.query {
+    background:url('data:image/gif;base64,R0lGODlheAB4AIAAAPLy8v///yH5BAAAAAAALAAAAAB4AHgAAAL/jI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKh8Si8YhMKpfMpvMJjUp/gKq1erleKdug9ouNgL+SLnVsdqDHkDSPDAho22C5vK62nvWMeN6NQNYAiDOHYfiAqEB4wyjmuMgISTP5F/bIF3m5U9nXGUj4CSOaQHoQmsmZOqHICmja0oq56bp6R6sjm2hb6weKm4M3m/HKGyxsSWwLO8rmaTzra8DcjFwKTYdLLeP8C1zmtj0jeP09XC5tJLtdbC7Uyr6M7RXOvD5PT6ubrY0P1J4OHDBxNgAG3MWLYA1U/qZJathD174F+xSOg0ZukCOL/yUwQsqIzh1HEnBuVWITp9uzlHZYsqy2pmHMid5mujNh86AlNAJz6mRhzYJNhD6n1AxqtEPMpCOQMgUB8anUqVSrWr2KNavWrVy7ev0KNqzYsWTLmj2LNq3atWn13TyVTmbctwvd/vxVDlPef3b14s22d0/gP4M1zr3bqC/gvwgLv1HcmDFhyRHdCrx2GdS7gHTvRAL3OR9lw6Oflc4FeTJcxA4PV/ZpF3bInMdgH5Z9dGgh27eL5p75GrNfuJmJiz5d2N+qqDFS53HsCboqaXKpd07FvJr05HSXd77oevHq4a2PjxdfHv2t17hXt2/9vq7t2brd+048//dS/Wsqb0gXfh4d/+E3YHoBqmagD96xth5ylGX3woLkNRjZgcE5aKFyzj0WXoUJkoZhQZZNeN2IfBXoEIqehSiidQxSCCOCELJFY407FAAAOw==');
+}
+body {
+    background: #eee
+}
+
+body, pre, textarea, input, select {
+    font-family: monospace;
+}
+
+td, th {
+    border: 1px solid #aaa;
+    white-space: pre-wrap;
+    background: #fff;
+    font-weight: normal
+}
+
+td:hover {
+    border: 1px solid #faa;
+}
+
+th {
+    background: #afa
+}
+
+table {
+    border-collapse: separate;
+    border: 0
+}
+
+pre {
+    background: #fff;
+    border: 1px dashed #DDDDDD;
+    padding: 5px;
+}
+
+textarea {
+    width: 100%;
+}
