@@ -44,7 +44,7 @@ function jira_query($q) {
     $db->query($q)->show('jira');
 }
 
-function xls_query($q, $title) {
+function xls_query($q, $title = 'report') {
     global $db;
     $db->query($q)->xls($title);
 }
