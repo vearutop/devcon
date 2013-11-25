@@ -2,8 +2,11 @@
 
 require_once 'src/config.php';
 require_once 'src/auth.php';
+require_once 'src/db_client.php';
+require_once 'src/out_xls.php';
+require_once 'src/facades.php';
 
-    if (isset($_REQUEST['custom'])) {
+if (isset($_REQUEST['custom'])) {
         $instances['custom'] = $_REQUEST['custom'];
     }
 
@@ -21,15 +24,6 @@ if (!isset($_POST['title'])) {
 
 ob_start();
 ?>
-<html>
-<head>
-	<title><?=$_POST['title']?></title>
-
-<link href="/src/style.css" type="text/css" />
-<script src="src/js/sortable.js"></script>
-
-</head>
-<body>
 <?php
 
 
@@ -46,7 +40,14 @@ include 'src/form.php';
 
 if (isset($_REQUEST['instance']) && isset($instances[$_REQUEST['instance']])) {
 	$tmp = parse_url($instances[$_REQUEST['instance']]);
-	$db['default'] = array('driver'=>$tmp['scheme'] ,'hostname'=>$tmp['host'],'username'=>$tmp['user'],'password'=>!empty($tmp['pass']) ? $tmp['pass'] : '','database'=>substr($tmp['path'],1));
+    print_r($tmp);
+	$db['default'] = array(
+        'driver'=>$tmp['scheme'],
+        'hostname'=>$tmp['host'],
+        'username'=>!empty($tmp['user']) ? $tmp['user'] : '',
+        'password'=>!empty($tmp['pass']) ? $tmp['pass'] : '',
+        'database'=>substr($tmp['path'],1)
+    );
 }
 
 if (!empty($_REQUEST['skip_preout'])) {
@@ -55,7 +56,7 @@ if (!empty($_REQUEST['skip_preout'])) {
 
 // SQL
 if ($db = db($_REQUEST['instance'])) {
-	if (isset($_POST['query']) && $_POST['query']) {
+	if (!empty($_POST['query'])) {
 		if (strpos($_POST['query'], "###") !== false) {
 			$queries = explode("###", $_POST['query']);
 		}
@@ -77,30 +78,15 @@ if (isset($_REQUEST['eval']) && $_REQUEST['eval']) {
 	eval($_REQUEST['eval']);
 }
 
-
-if (!empty($_POST['mq_query']) && isset($config['mt4'][$_POST['mq_server']])) {
-	echo '<h4>MT Query result</h4><pre>';
-	print_r(MQ_Query($_POST['mq_query'], $config['mt4'][$_POST['mq_server']]['host'], $config['mt4'][$_POST['mq_server']]['port']));
-	echo '</pre>';
-}
-
 xlsReport::finalize();
 
 if (!empty($_REQUEST['skip_preout'])) {
 	exit();
 }
 ?>
-<a href="#" onclick="this.nextSibling.style.display='';this.style.display='none'">$_SERVER</a><pre style="display:none">
-<?php print_r($_SERVER);?>
-</pre>
 
-</body>
-</html>
+
 <?php
-
-require_once 'src/db_client.php';
-require_once 'src/out_xls.php';
-require_once 'src/facades.php';
 
 
 
