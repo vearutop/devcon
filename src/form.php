@@ -4,12 +4,35 @@
     <title><?php echo$_POST['title']?></title>
 
     <link href="src/style.css"  media="all" rel="stylesheet" type="text/css" />
-    <script src="src/js/sortable.js"></script>
+    <script type="text/javascript">
+        (function(){
+            var iframe, timer;
 
+            function updateHeight() {
+                //console.log(iframe);
+                var r = document.getElementById('result');
+                r.style.height = iframe.document.documentElement.scrollHeight + 'px';
+                r.style.width = iframe.document.documentElement.scrollWidth + 'px';
+            }
+
+            window.bindIframe = function(element) {
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                iframe = element;
+                setInterval(updateHeight, 500);
+                updateHeight();
+            };
+
+        })();
+
+
+    </script>
 </head>
 <body>
 
 <form action="" method="post" target="result">
+    <input type="hidden" value="1" name="run" />
     <table class="form">
         <tr>
             <td style="width: 50%">
@@ -44,27 +67,12 @@
                 <button type="submit">run</button>
             </td>
         </tr>
-
-
-        <tr>
-            <td colspan="2">
-                <iframe name="result" id="result"></iframe>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="2">
-                <a href="#" onclick="this.nextSibling.style.display='';this.style.display='none'">$_SERVER</a><pre style="display:none"><?php print_r($_SERVER);?></pre>
-            </td>
-        </tr>
-
-
-
     </table>
-
-
 </form>
 
+<iframe name="result" id="result"></iframe>
+
+<a href="#" onclick="this.nextSibling.style.display='';this.style.display='none'">$_SERVER</a><pre style="display:none"><?php print_r($_SERVER);?></pre>
 
 
 

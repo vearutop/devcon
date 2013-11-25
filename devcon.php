@@ -35,12 +35,11 @@ if (empty($_REQUEST['instance'])) {
 	$_REQUEST['instance'] = 'default';
 }
 
-include 'src/form.php';
 
 
 if (isset($_REQUEST['instance']) && isset($instances[$_REQUEST['instance']])) {
 	$tmp = parse_url($instances[$_REQUEST['instance']]);
-    print_r($tmp);
+    //print_r($tmp);
 	$db['default'] = array(
         'driver'=>$tmp['scheme'],
         'hostname'=>$tmp['host'],
@@ -50,43 +49,12 @@ if (isset($_REQUEST['instance']) && isset($instances[$_REQUEST['instance']])) {
     );
 }
 
-if (!empty($_REQUEST['skip_preout'])) {
-    ob_end_clean();
+
+
+if (empty($_POST['run'])) {
+    require_once 'src/form.php';
 }
-
-// SQL
-if ($db = db($_REQUEST['instance'])) {
-	if (!empty($_POST['query'])) {
-		if (strpos($_POST['query'], "###") !== false) {
-			$queries = explode("###", $_POST['query']);
-		}
-		else {
-			$queries = array(&$_POST['query']);
-		}
-
-		foreach ($queries as &$q) {
-			$db->query($q)->show(empty($_POST['format']) ? 'html' : 'serialize');
-		}
-	}
+else {
+    require_once 'src/result.php';
 }
-else echo("Could not connect");
-
-
-// EVAL
-if (isset($_REQUEST['eval']) && $_REQUEST['eval']) {
-	echo "<h4>Eval</h4>";
-	eval($_REQUEST['eval']);
-}
-
-xlsReport::finalize();
-
-if (!empty($_REQUEST['skip_preout'])) {
-	exit();
-}
-?>
-
-
-<?php
-
-
 

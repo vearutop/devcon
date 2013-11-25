@@ -71,7 +71,9 @@ table.form input, table.form select, table.form textarea {
     border: none;
 }
 
-table.form #result {
-    width: 100%;
+
+#result {
+
     border: none;
+    display: block;
 }
