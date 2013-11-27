@@ -68,7 +68,7 @@ class TableHtml {
                 if (is_null($d)) {
                     $d = 'NULL';
                 }
-                elseif ($html_escape) {
+                elseif ($this->optionEscape) {
                     $d = str_replace('<', '&lt;', $d);
                 }
                 $rows[++$i] = $th_1 . $k . $th_2 . $td_1 . $d . $td_2;
@@ -95,7 +95,7 @@ class TableHtml {
 
 
 
-        echo $tail;
+        echo static::TAIL;
         return $this;
 
     }
