@@ -46,12 +46,12 @@ class TableHtml {
                 if (is_null($d)) {
                     $d = 'NULL';
                 }
-                elseif ($html_escape) {
+                elseif ($this->optionEscape) {
                     $d = str_replace('<', '&lt;', $d);
                 }
-                echo $td_1 . $d . $td_2;
+                echo static::TD_1 . $d . static::TD_2;
             }
-            echo $td_3, $tr_2;
+            echo static::TD_3, static::TR_2;
         }
 
 
