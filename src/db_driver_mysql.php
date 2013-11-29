@@ -29,4 +29,30 @@ class mysql_driver extends db_driver {
         return mysql_real_escape_string($s, $this->link);
     }
 
+
+    /**
+     * @param $search
+     * @return void
+     */
+    public function fullSearch($search) {
+        $tables = array();
+        $res = mysql_query("show table status");
+        while ($r = mysql_fetch_assoc($res)) $tables[$r['Name']] = $r['Rows'];
+
+        foreach ($tables as $table => $count)	{
+            echo "$table :: $count<br>";
+
+            if (!$count || $count>10000) {
+                continue;
+            }
+
+
+            $q = "SELECT * FROM $table WHERE ";
+            $res = mysql_query("DESC $table");
+            while ($r = mysql_fetch_assoc($res)) $q .= '`'.$r['Field'] . "` LIKE '%$search%' OR ";
+            $q = substr($q, 0, -3);
+            echo_query($q, 0);
+            //  echo $q."<br />";
+        }
+    }
 }
